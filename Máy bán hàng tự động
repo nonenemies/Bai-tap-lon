@@ -127,9 +127,9 @@ Option:
 	sub bh,48                 ; Chuyen ky tu so sang gia tri so (ASCII '0' la 48)
 	
 	cmp bh,1                  ; So sanh gia tri nhap voi 1
-	je Drink                  ; Neu bang 1, chuyen den nhan Breakfast
+	je Drink                  ; Neu bang 1, chuyen den nhan Drink
 	cmp bh,2                  ; So sanh gia tri nhap voi 2
-	je Foods                  ; Neu bang 2, chuyen den nhan Lunch
+	je Foods                  ; Neu bang 2, chuyen den nhan Snacks
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
 
 ; nhan Drink - Hien thi danh sach do uong
@@ -182,17 +182,17 @@ Drink:
 	sub bl,48                 ; Chuyen ky tu so sang gia tri so (ASCII '0' la 48)
 
 	cmp bl,1                  ; So sanh gia tri nhap voi 1
-	je Ten                    ; Neu bang 1, chuyen den nhan Fifty
+	je Ten                    ; Neu bang 1, chuyen den nhan Ten
 	cmp bl,2                  ; So sanh gia tri nhap voi 2
-	je Ten                    ; Neu bang 2, chuyen den nhan Fifty
+	je Ten                    ; Neu bang 2, chuyen den nhan Ten
 	cmp bl,3                  ; So sanh gia tri nhap voi 3
-	je Ten                    ; Neu bang 3, chuyen den nhan Fifty
+	je Ten                    ; Neu bang 3, chuyen den nhan Ten
 	cmp bl,4                  ; So sanh gia tri nhap voi 4
-	je Ten                    ; Neu bang 4, chuyen den nhan Fifty
+	je Ten                    ; Neu bang 4, chuyen den nhan Ten
 	cmp bl,5                  ; So sanh gia tri nhap voi 5
-	je Ten                    ; Neu bang 5, chuyen den nhan Fifty
+	je Ten                    ; Neu bang 5, chuyen den nhan Ten
 	cmp bl,6                  ; So sanh gia tri nhap voi 6
-	je Ten                    ; Neu bang 6, chuyen den nhan Fifty
+	je Ten                    ; Neu bang 6, chuyen den nhan Ten
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
 
 Snacks:
@@ -244,17 +244,17 @@ Snacks:
 	sub bl,48                 ; Chuyen ky tu so sang gia tri so (ASCII '0' la 48)
 	
 	cmp bl,1                  ; So sanh gia tri nhap voi 1
-	je Twenty                 ; Neu bang 1, chuyen den nhan Hundred
+	je Twenty                 ; Neu bang 1, chuyen den nhan Tuenty
 	cmp bl,2                  ; So sanh gia tri nhap voi 2
-	je Twenty                 ; Neu bang 2, chuyen den nhan Hundred
+	je Twenty                 ; Neu bang 2, chuyen den nhan Tuenty
 	cmp bl,3                  ; So sanh gia tri nhap voi 3
-	je Twenty                 ; Neu bang 3, chuyen den nhan Hundred
+	je Twenty                 ; Neu bang 3, chuyen den nhan Tuenty
 	cmp bl,4                  ; So sanh gia tri nhap voi 4
-	je Twenty                 ; Neu bang 4, chuyen den nhan Hundred
+	je Twenty                 ; Neu bang 4, chuyen den nhan Tuenty
 	cmp bl,5                  ; So sanh gia tri nhap voi 5
-	je Twenty                 ; Neu bang 5, chuyen den nhan Hundred
+	je Twenty                 ; Neu bang 5, chuyen den nhan Tuenty
 	cmp bl,6                  ; So sanh gia tri nhap voi 6
-	je Twenty                 ; Neu bang 6, chuyen den nhan Hundred
+	je Twenty                 ; Neu bang 6, chuyen den nhan Tuenty
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
 	
 ;for exit
