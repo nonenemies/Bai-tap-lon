@@ -23,7 +23,7 @@
 	a41 db 10,13,'               So luong mat hang con lai khong du! Vui long lua chon lai$'
 
 ; Option list
-	a9 db 10,13,'                        1. (Do uong) Drinks $'
+	a9 db 10,13,'                        1. (Do uong) Drink $'
 	a10 db 10,13,'                        2. (Do an vat) Snacks $'
 
 ; Drink List
