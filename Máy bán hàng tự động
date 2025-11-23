@@ -27,7 +27,7 @@
 	a10 db 10,13,'                        2. (Do an vat) Snacks $'
 
 ; Drink List
-	a12 db 10,13,'                  ******      Drinks List      ********$'
+	a12 db 10,13,'                  ******      Drink List      ********$'
 	a13 db 10,13,'                       1. Coca Cola             10/-$'
 	a14 db 10,13,'                       2. Pepsi                 10/-$'
 	a15 db 10,13,'                       3. Fanta                 10/-$'
@@ -35,8 +35,8 @@
 	a17 db 10,13,'                       5. Redbull               10/-$'
 	a18 db 10,13,'                       6. Coffee                10/-$'
 
-; Foods List
-	a20 db 10,13,'                  ******        Snacks List        ********$'
+; Snacks List
+	a20 db 10,13,'                  ******        Foods List        ********$'
 	a21 db 10,13,'                       1. Bim bim Oishi         20/-$'
 	a22 db 10,13,'                       2. Bim bim Ngo           20/-$'
 	a23 db 10,13,'                       3. Banh My Ruoc          20/-$'
@@ -195,7 +195,7 @@ Drink:
 	je Ten                    ; Neu bang 6, chuyen den nhan Fifty
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
 
-Foods:
+Snacks:
 ; tao dong moi
 	mov ah,2                  ; Thiet lap ham DOS de xuat ky tu
 	mov dl,0ah                ; Ky tu xuong dong
