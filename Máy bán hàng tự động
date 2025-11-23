@@ -10,14 +10,14 @@
 	a6 db 10,13,'   				 ******************************************$'
 
 ; Lua chon
-	a7 db 10,13,'                    Schedule---$'
+	a7 db 10,13,'                    Option---$'
 	a8 db 10,13,'                    Nhap Lua Chon Cua Ban: $'
 	a19 db 10,13,'                          Nhap 1 De Hien Thi Chuong Trinh: $'
 	a34 db 10,13,'                            Moi Ban Nhap Chon Mon: $'
 	a35 db 10,13,'                            Nhap So Luong: $'
 	a36 db 10,13,'                        Dau Vao Khong Hop Le !! Vui Long Chay Lai Chuong Trinh$'
 	a37 db 10,13,'                            Tong Gia: $'
-	a38 db 10,13,'                    1. Schedule: $'
+	a38 db 10,13,'                    1. Option: $'
 	a39 db 10,13,'                    2. Exit: $'
 	a40 db 10,13,'                            So luong mat hang con lai: $'
 	a41 db 10,13,'               So luong mat hang con lai khong du! Vui long lua chon lai$'
@@ -46,7 +46,7 @@
 
 ; So luong mat hang
     drink_count db 9, 6, 8, 3, 2, 0
-    lunch_count db 9, 7, 4, 9, 1, 0
+    snacks_count db 9, 7, 4, 9, 1, 0
 
 .code
 main proc
@@ -132,7 +132,7 @@ Option:
 	je Foods                  ; Neu bang 2, chuyen den nhan Lunch
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
 
-; nhan Breakfast - Hien thi danh sach bua sang
+; nhan Drink - Hien thi danh sach do uong
 Drink:
 ; tao dong moi
 	mov ah,2                  ; Thiet lap ham DOS de xuat ky tu
@@ -147,7 +147,7 @@ Drink:
 	mov dl,0dh                ; Ky tu quay dau xe (ve dau dong)
 	int 21h                   ; Goi ngat 21h de xuat ky tu
 
-; Bat dau hien thi danh sach bua sang
+; Bat dau hien thi danh sach do uong
 	mov ah,9                  ; Thiet lap ham DOS de hien thi chuoi
 	lea dx,a12                ; Dua dia chi chuoi a12 vao thanh ghi DX
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
@@ -172,7 +172,7 @@ Drink:
 	lea dx,a18                ; Dua dia chi chuoi a18 vao thanh ghi DX
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
 
-; kiem tra dieu kien nhap mon an bua sang
+; kiem tra dieu kien nhap loai do uong
 	lea dx,a34                ; Dua dia chi chuoi a34 vao thanh ghi DX
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
 
@@ -209,7 +209,7 @@ Foods:
 	mov dl,0dh                ; Ky tu quay dau xe (ve dau dong)
 	int 21h                   ; Goi ngat 21h de xuat ky tu
 
-; Bat dau hien thi danh sach bua trua
+; Bat dau hien thi danh sach do an vat
 	mov ah,9                  ; Thiet lap ham DOS de hien thi chuoi
 	lea dx,a20                ; Dua dia chi chuoi a20 vao thanh ghi DX
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
@@ -234,7 +234,7 @@ Foods:
 	lea dx,a26                ; Dua dia chi chuoi a26 vao thanh ghi DX
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
 
-; kiem tra dieu kien nhap mon an bua trua
+; kiem tra dieu kien nhap loai do an vat
 	lea dx,a34                ; Dua dia chi chuoi a34 vao thanh ghi DX
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
 	
@@ -277,7 +277,7 @@ Foods:
 
 
 Ten:
-    lea dx,a40          ; In thông báo "So luong mat hang con lai la:"
+    lea dx,a40          ; In thong bao "So luong mat hang con lai la:"
     mov ah,9
     int 21h
 
@@ -357,7 +357,7 @@ Twenty:
 
     xor bh, bh           
     dec bx               
-    mov al, [lunch_count + bx] 
+    mov al, [snacks_count + bx] 
     mov cl, al
     add al, 48 
     mov dl, al
