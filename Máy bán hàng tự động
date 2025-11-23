@@ -36,7 +36,7 @@
 	a18 db 10,13,'                       6. Coffee                10/-$'
 
 ; Snacks List
-	a20 db 10,13,'                  ******        Foods List        ********$'
+	a20 db 10,13,'                  ******        Snacks List        ********$'
 	a21 db 10,13,'                       1. Bim bim Oishi         20/-$'
 	a22 db 10,13,'                       2. Bim bim Ngo           20/-$'
 	a23 db 10,13,'                       3. Banh My Ruoc          20/-$'
