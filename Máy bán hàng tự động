@@ -15,7 +15,7 @@
 	a19 db 10,13,'                          Nhap 1 De Hien Thi Chuong Trinh: $'
 	a34 db 10,13,'                            Moi Ban Nhap Chon Mon: $'
 	a35 db 10,13,'                            Nhap So Luong: $'
-	a36 db 10,13,'                        Dau Vao Khong Hop Le !! Vui Long Chay Lai Chuong Trinh$'
+	a36 db 10,13,'                  Dau Vao Khong Hop Le !! Vui Long Chay Lai Chuong Trinh$'
 	a37 db 10,13,'                            Tong Gia: $'
 	a38 db 10,13,'                    1. Option: $'
 	a39 db 10,13,'                    2. Exit: $'
@@ -129,8 +129,9 @@ Option:
 	cmp bh,1                  ; So sanh gia tri nhap voi 1
 	je Drink                  ; Neu bang 1, chuyen den nhan Drink
 	cmp bh,2                  ; So sanh gia tri nhap voi 2
-	je Foods                  ; Neu bang 2, chuyen den nhan Snacks
+	je Snacks                  ; Neu bang 2, chuyen den nhan Snacks
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
+
 
 ; nhan Drink - Hien thi danh sach do uong
 Drink:
@@ -195,6 +196,7 @@ Drink:
 	je Ten                    ; Neu bang 6, chuyen den nhan Ten
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
 
+; Nhan Snacks - Hien thi danh sach do an vat
 Snacks:
 ; tao dong moi
 	mov ah,2                  ; Thiet lap ham DOS de xuat ky tu
@@ -277,18 +279,19 @@ Snacks:
 
 
 Ten:
-    lea dx,a40          ; In thong bao "So luong mat hang con lai la:"
-    mov ah,9
-    int 21h
-
-    xor bh, bh           
-    dec bx               
-    mov al, [drink_count + bx] 
-    mov cl, al
-    add al, 48 
-    mov dl, al
-    mov ah, 2
-    int 21h
+    lea dx,a40          ; Nap thong diep "So luong mat hang con lai" vao DX
+    mov ah,9            ; Thiet lap DOS de hien thi mot chuoi
+    int 21h             ; Hien thi thong diep
+                        
+    xor bh,bh           ; Xoa sach BH de BX = BL 
+    dec bx              ; BX -= 1 de lay chi so cua drink_count cua phan tu nhap vao 
+    mov al,[drink_count + bx] ; Lay so luong mat hang con lai luu vao AL 
+    mov cl,al           ; Sao chep so luong va luu vao CL de kiem tra Insufficient 
+    add al,48           ; Chuyen doi so sang ASCII de in
+    
+    mov dl,al           ; Chuyen vao DL de in
+    mov ah,2            ; Thiet lap DOS de hien thi mot ki tu
+    int 21h             ; Hien thi mot ki tu
      
 	lea dx,a35          ; Nap thong diep "Nhap So Luong" vao DX
 	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
@@ -296,23 +299,24 @@ Ten:
 	
 	mov ah,1            ; Thiet lap ham DOS de doc mot ky tu tu dau vao
 	int 21h             ; Doc mot ky tu (so luong)
-	sub al, 48          ; Chuyen doi ky tu ASCII thanh gia tri so
+	sub al,48           ; Chuyen doi ky tu ASCII thanh gia tri so
 	
-	cmp al, cl
-	jg Insufficient
+	cmp al,cl           ; Kiem tra xem co qua so luong con lai khong
+	jg Insufficient     ; Neu qua so luong thi khong hop le
 	
-	mov bl, 10
-	mul bl              ; Nhan so luong (BL) voi gia tri so (AL)
+	sub byte ptr [drink_count + bx], al; Cap nhat so luong con lai
+	mov bl,10           ; Dat BL = gia cua mat hang
+	mul bl              ; Nhan gia tri mat hang (BL) voi so luong <AL> = Tong
     
-    push ax
+    push ax             ; Push "Tong Gia" vao Stack de dung sau
     
 	lea dx,a37          ; Nap thong diep "Tong Gia" vao DX
 	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
 	int 21h             ; Hien thi thong diep
     
-    pop ax
+    pop ax              ; Lay ket qua "Tong Gia" tu Stack ra AX de in
     
-	call Total
+	call Total          ; In ra "Tong Gia"  
 
 	mov dl,47           ; Hien thi ASCII cho so 4 (ket thuc thong diep)
 	int 21h             ; Hien thi ket thuc thong diep
@@ -327,7 +331,7 @@ Ten:
 	int 21h             ; Hien thi ky tu CR
 
 	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
-	lea dx,a38          ; Nap thong diep "Lich Trinh" vao DX
+	lea dx,a38          ; Nap thong diep "Option" vao DX
 	int 21h             ; Hien thi thong diep
 
 	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
@@ -351,18 +355,19 @@ Ten:
 	jmp Invalid         ; Nhay den Invalid neu lua chon khong phai la 1 hoac 2
 
 Twenty:
-    lea dx,a40          ; In thông báo "So luong mat hang con lai la:"
-    mov ah,9
-    int 21h
+    lea dx,a40          ; Nap thong diep "So luong mat hang con lai" vao DX
+    mov ah,9            ; Thiet lap DOS de hien thi mot chuoi
+    int 21h             ; Hien thi thong diep
 
-    xor bh, bh           
-    dec bx               
-    mov al, [snacks_count + bx] 
-    mov cl, al
-    add al, 48 
-    mov dl, al
-    mov ah, 2
-    int 21h
+    xor bh,bh           ; Xoa sach BH de BX = BL 
+    dec bx              ; BX -= 1 de lay chi so cua snacks_count cua phan tu nhap vao 
+    mov al,[snacks_count + bx] ; Lay so luong mat hang con lai luu vao AL 
+    mov cl,al           ; Sao chep so luong va luu vao CL de kiem tra Insufficient 
+    add al,48           ; Chuyen doi so sang ASCII de in
+    
+    mov dl,al           ; Chuyen vao DL de in
+    mov ah,2            ; Thiet lap DOS de hien thi mot ki tu
+    int 21h             ; Hien thi mot ki tu
 
 	lea dx,a35          ; Nap thong diep "Nhap So Luong" vao DX
 	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
@@ -371,57 +376,28 @@ Twenty:
 	int 21h             ; Doc mot ky tu (so luong)
 	sub al,48           ; Chuyen doi ky tu ASCII thanh gia tri so 
 	
-	cmp al, cl
-	jg Insufficient
+	cmp al,cl           ; Kiem tra xem co qua so luong con lai khong
+	jg Insufficient     ; Neu qua so luong thi khong hop le
 	
-	mov bl, 20
-	mul bl              ; Nhan so luong (BL) voi gia tri so (AL)
+	sub byte ptr [snacks_count + bx], al; Cap nhat so luong con lai
 	
-	push ax
-
+	mov bl,20           ; Dat BL = gia cua mat hang
+	mul bl              ; Nhan gia tri mat hang (BL) voi so luong <AL> = Tong
+    
+    push ax             ; Push "Tong Gia" vao Stack de dung sau
+    
 	lea dx,a37          ; Nap thong diep "Tong Gia" vao DX
 	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
 	int 21h             ; Hien thi thong diep
-	
-	pop ax
-	
-	call Total
+    
+    pop ax              ; Lay ket qua "Tong Gia" tu Stack ra AX de in
+    
+	call Total          ; In ra "Tong Gia"
 	
 	mov dl,47           ; Hien thi ASCII cho so 4 (ket thuc thong diep)
 	int 21h             ; Hien thi ket thuc thong diep
 	mov dl,45           ; Hien thi ASCII cho so 5 (ket thuc thong diep)
 	int 21h             ; Hien thi ket thuc thong diep
-
-; De thoat hoac quay lai menu chinh
-	mov ah,2            ; Thiet lap ham DOS de hien thi ky tu
-	mov dl,0ah          ; Hien thi dong moi
-	int 21h             ; Hien thi dong moi
-	mov dl,0dh          ; Hien thi ky tu carriage return
-	int 21h             ; Hien thi ky tu carriage return
-	
-	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
-	lea dx,a38          ; Nap thong diep "Lich Trinh" vao DX
-	int 21h             ; Hien thi thong diep
-	
-	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
-	lea dx,a39          ; Nap thong diep "Thoat" vao DX
-	int 21h             ; Hien thi thong diep
-	
-	mov ah,9            ; Thiet lap ham DOS de hien thi mot chuoi
-	lea dx,a8           ; Nap thong diep "Nhap Lua Chon Cua Ban" vao DX
-	int 21h             ; Hien thi thong diep
-	
-	mov ah,1            ; Thiet lap ham DOS de doc mot ky tu tu dau vao
-	int 21h             ; Doc mot ky tu (lua chon)
-	sub al,48           ; Chuyen doi ky tu ASCII thanh gia tri so
-	
-	cmp al,1            ; So sanh lua chon voi 1
-	je Option           ; Nhay den Lich Trinh neu lua chon la 1
-	
-	cmp al,2            ; So sanh lua chon voi 2
-	je Exit             ; Nhay den Thoat neu lua chon la 2
-	
-	jmp Invalid         ; Nhay den Invalid neu lua chon khong phai la 1 hoac 2
 
 ; De thoat hoac quay lai menu chinh
 	mov ah,2            ; Thiet lap ham DOS de hien thi ky tu
@@ -461,23 +437,23 @@ Insufficient:
     jmp Option 
 
 Total:
-    mov bx, 10          ; So chia la 10
-    xor cx, cx          ; Reset bien dem
+    mov bx, 10              ; So chia la 10
+    xor cx, cx              ; Reset bien dem
 
-    ChiaLayDu:
+    Chia:
         xor dx, dx          ; Xoa DX
         div bx              ; Chia AX cho 10
-        push dx             ; Cat so du vao Stack
-        inc cx              ; Tang dem
-        cmp ax, 0           ; Thuong bang 0 chua?
-        jne ChiaLayDu       ; Chua thi chia tiep
+        push dx             ; Push so du vao Stack
+        inc cx              ; Tang bien dem
+        cmp ax, 0           ; Kiem tra xem thuong bang 0 chua
+        jne Chia            ; Chua thi chia tiep
 
-    InRaManHinh:
+    InRa:
         pop dx              ; Lay so du tu Stack
         add dl, 48          ; Chuyen thanh ky tu ASCII
-        mov ah, 2
+        mov ah, 2           ; Thiet lap DOS de hien thi mot ki tu
         int 21h             ; In ra
-        loop InRaManHinh    ; Lap lai cho den het
+        loop InRa           ; Lap lai cho den het
     ret    
 
 Invalid:
