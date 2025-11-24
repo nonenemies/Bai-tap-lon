@@ -32,21 +32,21 @@
 
 ; Drink List
 	a12 db 10,13,'                      ******      Drink List      ********$'
-	a13 db 10,13,'                          1. Coca Cola             10.000 VND$'
-	a14 db 10,13,'                          2. Pepsi                 10.000 VND$'
-	a15 db 10,13,'                          3. Fanta                 10.000 VND$'
-	a16 db 10,13,'                          4. Sting                 10.000 VND$'
-	a17 db 10,13,'                          5. Redbull               10.000 VND$'
-	a18 db 10,13,'                          6. Coffee                10.000 VND$'
+	a13 db 10,13,'                       1. Coca Cola             10.000 VND$'
+	a14 db 10,13,'                       2. Pepsi                 10.000 VND$'
+	a15 db 10,13,'                       3. Fanta                 10.000 VND$'
+	a16 db 10,13,'                       4. Sting                 10.000 VND$'
+	a17 db 10,13,'                       5. Redbull               10.000 VND$'
+	a18 db 10,13,'                       6. Coffee                10.000 VND$'
 
 ; Snacks List
 	a20 db 10,13,'                      ******        Snacks List        ********$'
-	a21 db 10,13,'                          1. Bim bim Oishi         20.000 VND$'
-	a22 db 10,13,'                          2. Bim bim Ngo           20.000 VND$'
-	a23 db 10,13,'                          3. Banh My Ruoc          20.000 VND$'
-	a24 db 10,13,'                          4. Bo Kho Cay            20.000 VND$'
-	a25 db 10,13,'                          5. Muc Bento             20.000 VND$'
-	a26 db 10,13,'                          6. Banh Bao              20.000 VND$'
+	a21 db 10,13,'                       1. Bim bim Oishi         20.000 VND$'
+	a22 db 10,13,'                       2. Bim bim Ngo           20.000 VND$'
+	a23 db 10,13,'                       3. Banh My Ruoc          20.000 VND$'
+	a24 db 10,13,'                       4. Bo Kho Cay            20.000 VND$'
+	a25 db 10,13,'                       5. Muc Bento             20.000 VND$'
+	a26 db 10,13,'                       6. Banh Bao              20.000 VND$'
 
 ; So luong mat hang
     drink_count db 9, 6, 8, 3, 2, 0     ;so luong drink
@@ -64,7 +64,7 @@
     a51 db 10,13,'                     Vui long lua chon phuong thuc thanh toan hop le $'
     a52 db 10,13,'                     An 1 de hoan tat thanh toan: $'
     a53 db 10,13,'                     Cam on quy khach da su dung dich vu! $'
-    a66 db 10,13,'.000 VND$' 
+    a66 db ,'.000 VND$' 
     
 ; Ma QR      
     a54 db 10,13,'                          ###### ## # ######$'
@@ -532,7 +532,7 @@ Thanh_Toan:
         int 21h               ; In ra
         loop InRa             ; Lap lai cho den het
         
-    lea dx,a66                ; Dua dia chi chuoi a46 vao thanh ghi DX
+    lea dx,a66                ; Dua dia chi chuoi a66 vao thanh ghi DX
     mov ah,9                  ; Thiet lap ham DOS de hien thi mot chuoi
     int 21h                   ; Goi ngat 21h de hien thi chuoi
      
@@ -588,6 +588,10 @@ Thanh_Toan:
 	    int 21h               ; Goi ngat 21h de nhap ky tu
 	    mov bh,al             ; Luu gia tri nhap vao thanh ghi BH
 	    sub bh,48             ; Chuyen ky tu so sang gia tri so (ASCII '0' la 48)
+	    
+	    mov ah,2              ; Thiet lap ham DOS de xuat ky tu
+	    mov dl,0ah            ; Ky tu xuong dong
+	    int 21h               ; Goi ngat 21h de xuat ky tu
 	    
 	    jmp Exit              ; Ket thuc mua hang, nhay den Exit
         
@@ -650,6 +654,10 @@ Thanh_Toan:
 	    int 21h               ; Goi ngat 21h de nhap ky tu
 	    mov bh,al             ; Luu gia tri nhap vao thanh ghi BH
 	    sub bh,48             ; Chuyen ky tu so sang gia tri so (ASCII '0' la 48)
+	    
+	    mov ah,2              ; Thiet lap ham DOS de xuat ky tu
+	    mov dl,0ah            ; Ky tu xuong dong
+	    int 21h               ; Goi ngat 21h de xuat ky tu
 	    
 	    jmp Exit              ; Ket thuc mua hang, nhay den Exit  
 
