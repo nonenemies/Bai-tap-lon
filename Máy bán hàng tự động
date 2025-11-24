@@ -15,7 +15,7 @@
 	a19 db 10,13,'                              Nhap 1 De Mua hang: $'
 	a34 db 10,13,'                            Moi Ban Nhap Chon Mon: $'
 	a35 db 10,13,'                            Nhap So Luong: $'
-	a36 db 10,13,'                  Dau Vao Khong Hop Le !! Vui Long Chay Lai Chuong Trinh $'
+	a36 db 10,13,'                  Dau Vao Khong Hop Le !! Vui Long mua hang lai $'
 	a37 db 10,13,'                            Da them vao gio hang! $'
 	a38 db 10,13,'                     1. Mua them. $'
 	a39 db 10,13,'                     2. Thanh toan. $'
@@ -609,7 +609,7 @@ Thanh_Toan:
 	    mov dl,0dh            ; Ky tu quay dau xe (ve dau dong)
 	    int 21h               ; Goi ngat 21h de xuat ky tu
 	    
-	    mov ah,9    
+	    mov ah,9              ; Thiet lap ham DOS de hien thi mot chuoi
         lea dx,a54            ; Dua dia chi chuoi a1 vao thanh ghi DX
         int 21h               ; Goi ngat 21h de hien thi chuoi
         lea dx,a55            ; Dua dia chi chuoi a1 vao thanh ghi DX
@@ -661,28 +661,35 @@ Empty:
 
 ;Invalid - Neu dau vao khong hop le
 Invalid:
-; Dong moi
-	mov ah,2                  ; Thiet lap chuc nang hien thi ky tu
-	mov dl,0ah                ; Hien thi dong moi (LF)
-	int 21h                   ; Thuc hien chuc nang
+; tao dong moi
+	mov ah,2                  ; Thiet lap ham DOS de xuat ky tu
+	mov dl,0ah                ; Ky tu xuong dong
+	int 21h                   ; Goi ngat 21h de xuat ky tu
+	mov dl,0dh                ; Ky tu quay dau xe (ve dau dong)
+	int 21h                   ; Goi ngat 21h de xuat ky tu
+	    
+	mov ah,2                  ; Thiet lap ham DOS de xuat ky tu
+	mov dl,0ah                ; Ky tu xuong dong
+	int 21h                   ; Goi ngat 21h de xuat ky tu
+	mov dl,0dh                ; Ky tu quay dau xe (ve dau dong)
+	int 21h                   ; Goi ngat 21h de xuat ky tu
 
-	mov dl,0dh                ; Hien thi ky tu carriage return (CR)
-	int 21h                   ; Thuc hien chuc nang
-
-	mov ah,2                  ; Thiet lap chuc nang hien thi ky tu
-	mov dl,0ah                ; Hien thi dong moi (LF)
-	int 21h                   ; Thuc hien chuc nang
-	
-	mov dl,0dh                ; Hien thi ky tu carriage return (CR)
-	int 21h                   ; Thuc hien chuc nang
-	
-	mov ah,9                  ; Thiet lap chuc nang hien thi chuoi
-	lea dx,a36                ; Load dia chi cua chuoi "Invalid Input !! Rerun the Program" vao DX
-	int 21h                   ; Hien thi chuoi
-	jmp Exit                  ; Nhay den nhan Exit de thoat chuong trinh
+; tiep tuc	
+	mov ah,9                  ; Thiet lap ham DOS de hien thi mot chuoi
+	lea dx,a36                ; Dua dia chi chuoi a36 vao thanh ghi DX
+	int 21h                   ; Goi ngat 21h de hien thi chuoi
+	jmp Exit                  ; Nhay den nhan Exit
 
 ;Exit - Thoat chuong trinh
-Exit:	
+Exit:
+; tao dong moi
+	mov ah,2                  ; Thiet lap ham DOS de xuat ky tu
+	mov dl,0ah                ; Ky tu xuong dong
+	int 21h                   ; Goi ngat 21h de xuat ky tu
+	mov dl,0dh                ; Ky tu quay dau xe (ve dau dong)
+
+; tiep tuc	
+	int 21h                   ; Goi ngat 21h de xuat ky tu	
 	lea dx,a53                ; Dua dia chi chuoi a53 vao thanh ghi DX
 	mov ah,9                  ; Thiet lap ham DOS de hien thi mot chuoi
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
