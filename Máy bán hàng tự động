@@ -602,14 +602,21 @@ Thanh_Toan:
         lea dx,a49            ; Dua dia chi chuoi a49 vào thanh ghi DX
         mov ah,9              ; Thiet lap ham DOS de hien thi mot chuoi
         int 21h               ; Goi ngat 21h de hien thi chuoi 
-	        
+	    
+	    mov ah,2              ; Thiet lap ham DOS de xuat ky tu
+	    mov dl,0ah            ; Ky tu xuong dong
+	    int 21h               ; Goi ngat 21h de xuat ky tu
+	    mov dl,0dh            ; Ky tu quay dau xe (ve dau dong)
+	    int 21h               ; Goi ngat 21h de xuat ky tu
+	    
+	    mov ah,9    
         lea dx,a54            ; Dua dia chi chuoi a1 vao thanh ghi DX
         int 21h               ; Goi ngat 21h de hien thi chuoi
         lea dx,a55            ; Dua dia chi chuoi a1 vao thanh ghi DX
         int 21h               ; Goi ngat 21h de hien thi chuoi
         lea dx,a56            ; Dua dia chi chuoi a1 vao thanh ghi DX
         int 21h               ; Goi ngat 21h de hien thi chuoi
-        lea dx,a57            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        lea dx,a57            ; Dua dia chi chuoi a1 vao thanh ghi DX 
         int 21h               ; Goi ngat 21h de hien thi chuoi
         lea dx,a58            ; Dua dia chi chuoi a1 vao thanh ghi DX
         int 21h               ; Goi ngat 21h de hien thi chuoi
@@ -627,6 +634,12 @@ Thanh_Toan:
         int 21h               ; Goi ngat 21h de hien thi chuoi
         lea dx,a65            ; Dua dia chi chuoi a1 vao thanh ghi DX
         int 21h               ; Goi ngat 21h de hien thi chuoi 
+        
+        mov ah,2              ; Thiet lap ham DOS de xuat ky tu
+	    mov dl,0ah            ; Ky tu xuong dong
+	    int 21h               ; Goi ngat 21h de xuat ky tu
+	    mov dl,0dh            ; Ky tu quay dau xe (ve dau dong)
+	    int 21h               ; Goi ngat 21h de xuat ky tu
         
         lea dx,a52            ; Dua dia chi chuoi a52 vao thanh ghi DX
         mov ah,9              ; Thiet lap ham DOS de hien thi mot chuoi
