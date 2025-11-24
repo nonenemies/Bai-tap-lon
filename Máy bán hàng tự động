@@ -63,7 +63,20 @@
     a50 db 10,13,'                     Vui long lua chon phuong thuc thanh toan: $'
     a51 db 10,13,'                     Vui long lua chon phuong thuc thanh toan hop le $'
     a52 db 10,13,'                     An 1 de hoan tat thanh toan: $'
-    a53 db 10,13,'                     Cam on quy khach da su dung dich vu! $' 
+    a53 db 10,13,'                     Cam on quy khach da su dung dich vu! $'
+; Ma QR      
+    a54 db 10,13,'                                   ###### ## # ######$'
+    a55 db 10,13,'                                    # ## #  ### # ## #$'
+    a56 db 10,13,'                                    # ## #   ## # ## #$'
+    a57 db 10,13,'                                    ###### ##   ######$'
+    a58 db 10,13,'                                            ###$' 
+    a59 db 10,13,'                                    # ## #   # ###  # $'
+    a60 db 10,13,'                                    ###  ## #    ##  #$'
+    a61 db 10,13,'                                           # ###    #$'
+    a62 db 10,13,'                                    ###### #   #   ###$'
+    a63 db 10,13,'                                    # ## #  ##  ##   #$'
+    a64 db 10,13,'                                    # ## #  # ##  #   $'
+    a65 db 10,13,'                                    ###### # #  ##  ##$'
 
 .code
 main proc
