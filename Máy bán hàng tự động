@@ -59,24 +59,25 @@
     a46 db 10,13,'                     1. Thanh toan bang tien mat $'
     a47 db 10,13,'                     Vui long nhet tien vao khe $'
     a48 db 10,13,'                     2. Thanh toan chuyen khoan $'
-    a49 db 10,13,'                     Vui long quet ma QR tren man hinh $'
+    a49 db 10,13,'                     Vui long quet ma QR tren man hinh: $'
     a50 db 10,13,'                     Vui long lua chon phuong thuc thanh toan: $'
     a51 db 10,13,'                     Vui long lua chon phuong thuc thanh toan hop le $'
     a52 db 10,13,'                     An 1 de hoan tat thanh toan: $'
-    a53 db 10,13,'                     Cam on quy khach da su dung dich vu! $'
+    a53 db 10,13,'                     Cam on quy khach da su dung dich vu! $' 
+    
 ; Ma QR      
-    a54 db 10,13,'                                   ###### ## # ######$'
-    a55 db 10,13,'                                    # ## #  ### # ## #$'
-    a56 db 10,13,'                                    # ## #   ## # ## #$'
-    a57 db 10,13,'                                    ###### ##   ######$'
-    a58 db 10,13,'                                            ###$' 
-    a59 db 10,13,'                                    # ## #   # ###  # $'
-    a60 db 10,13,'                                    ###  ## #    ##  #$'
-    a61 db 10,13,'                                           # ###    #$'
-    a62 db 10,13,'                                    ###### #   #   ###$'
-    a63 db 10,13,'                                    # ## #  ##  ##   #$'
-    a64 db 10,13,'                                    # ## #  # ##  #   $'
-    a65 db 10,13,'                                    ###### # #  ##  ##$'
+    a54 db 10,13,'                          ###### ## # ######$'
+    a55 db 10,13,'                          # ## #  ### # ## #$'
+    a56 db 10,13,'                          # ## #   ## # ## #$'
+    a57 db 10,13,'                          ###### ##   ######$'
+    a58 db 10,13,'                                  ###$' 
+    a59 db 10,13,'                          # ## #   # ###  # $'
+    a60 db 10,13,'                          ###  ## #    ##  #$'
+    a61 db 10,13,'                                 # ###    #$'
+    a62 db 10,13,'                          ###### #   #   ###$'
+    a63 db 10,13,'                          # ## #  ##  ##   #$'
+    a64 db 10,13,'                          # ## #  # ##  #   $'
+    a65 db 10,13,'                          ###### # #  ##  ##$'
 
 .code
 main proc
@@ -97,7 +98,7 @@ main proc
 	lea dx,a5                 ; Dua dia chi chuoi a5 vao thanh ghi DX
 	int 21h                   ; Goi ngat 21h de hien thi chuoi
 	lea dx,a6                 ; Dua dia chi chuoi a6 vao thanh ghi DX
-	int 21h                   ; Goi ngat 21h de hien thi chuoi
+	int 21h                   ; Goi ngat 21h de hien thi chuoi   
 
 ; tao dong moi
 	mov ah,2                  ; Thiet lap ham DOS de xuat ky tu
@@ -600,7 +601,32 @@ Thanh_Toan:
     ; tiep tuc   
         lea dx,a49            ; Dua dia chi chuoi a49 vào thanh ghi DX
         mov ah,9              ; Thiet lap ham DOS de hien thi mot chuoi
+        int 21h               ; Goi ngat 21h de hien thi chuoi 
+	        
+        lea dx,a54            ; Dua dia chi chuoi a1 vao thanh ghi DX
         int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a55            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a56            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a57            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a58            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a59            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a60            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a61            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a62            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a63            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a64            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi
+        lea dx,a65            ; Dua dia chi chuoi a1 vao thanh ghi DX
+        int 21h               ; Goi ngat 21h de hien thi chuoi 
         
         lea dx,a52            ; Dua dia chi chuoi a52 vao thanh ghi DX
         mov ah,9              ; Thiet lap ham DOS de hien thi mot chuoi
