@@ -3,10 +3,10 @@
 .data
 ; Trang chao mung                             
 	a1 db 10,13,'   	 			******************************************$'
-	a2 db 10,13,'   				 **             Chao Mung Ban            **$'
-	a3 db 10,13,'   				 **                Den Voi               **$'
-	a4 db 10,13,'   				 **       May Ban Do An Tu Dong PTIT     **$'
-	a5 db 10,13,'   				 **      (PTIT Food Vending Machine)     **$'
+	a2 db 10,13,'   				 **       May Ban Do An Tu Dong PTIT     **$'
+	a3 db 10,13,'   				 **      (PTIT Food Vending Machine)     **$'
+	a4 db 10,13,'   				 **    Han hanh duoc phuc vu quy khach   **$'
+	a5 db 10,13,'   				 **           Welcome to PTIT!           **$'
 	a6 db 10,13,'   				 ******************************************$'
 
 ; Lua chon
