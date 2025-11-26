@@ -1,2 +1,15 @@
-Báo cáo bài tập lớn Kiến trúc máy tính
-Đề tài - Máy bán hàng tự động PTIT
+# Tên dự án
+
+## Mô tả ngắn
+
+## Tính năng
+
+## Cài đặt
+
+## Cách dùng
+
+## Cấu trúc thư mục
+
+## Đóng góp
+
+## License
