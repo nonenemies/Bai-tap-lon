@@ -3,14 +3,14 @@
 .data
 ; Trang chao mung                             
 	a1 db 10,13,'   	 			******************************************$'
-	a2 db 10,13,'   				 **       May Ban Do An Tu Dong PTIT     **$'
-	a3 db 10,13,'   				 **      (PTIT Food Vending Machine)     **$'
-	a4 db 10,13,'   				 **    Han hanh duoc phuc vu quy khach   **$'
-	a5 db 10,13,'   				 **           Welcome to PTIT!           **$'
+	a2 db 10,13,'   				 **             Chao Mung Ban            **$'
+	a3 db 10,13,'   				 **                Den Voi               **$'
+	a4 db 10,13,'   				 **       May Ban Do An Tu Dong PTIT     **$'
+	a5 db 10,13,'   				 **      (PTIT Food Vending Machine)     **$'
 	a6 db 10,13,'   				 ******************************************$'
 
 ; Lua chon
-	a7 db 10,13,'                    Option---$'
+	a7 db 10,13,'                     Option---$'
 	a8 db 10,13,'                     Nhap Lua Chon Cua Ban: $'
 	a19 db 10,13,'                              Nhap 1 De Mua hang: $'
 	a34 db 10,13,'                            Moi Ban Nhap Chon Mon: $'
@@ -62,7 +62,7 @@
     a49 db 10,13,'                     Vui long quet ma QR tren man hinh: $'
     a50 db 10,13,'                     Vui long lua chon phuong thuc thanh toan: $'
     a51 db 10,13,'                     Vui long lua chon phuong thuc thanh toan hop le $'
-    a52 db 10,13,'                     An 1 de hoan tat thanh toan: $'
+    a52 db 10,13,'                     An nut bat ki de hoan tat thanh toan: $'
     a53 db 10,13,'                     Cam on quy khach da su dung dich vu! $'
     a66 db ,'.000 VND$' 
     
@@ -124,7 +124,7 @@ main proc
 	sub bh,48                 ; Chuyen ky tu so sang gia tri so (ASCII '0' la 48)
 
 	cmp bh,1                  ; So sanh gia tri nhap voi 1
-	je Option                 ; Neu bang 1, chuyen den nhan Schedule
+	je Option                 ; Neu bang 1, chuyen den nhan Option
 	jmp Invalid               ; Neu khong, chuyen den nhan Invalid
 
 Option:
