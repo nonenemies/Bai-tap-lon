@@ -357,6 +357,9 @@ Ten:
 	int 21h                   ; Doc mot ky tu (so luong)
 	sub al,48                 ; Chuyen doi ky tu ASCII thanh gia tri so
 	
+	cmp al, 0                 ; Kiem tra xem co khong hop le khong
+	je Invalid                ; Neu khong hop le nhay de nhan Invalid
+	
 	cmp al,cl                 ; Kiem tra xem co qua so luong con lai khong
 	jg Insufficient           ; Neu qua so luong thi khong hop le
 	
