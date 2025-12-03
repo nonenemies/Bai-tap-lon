@@ -536,7 +536,7 @@ Thanh_Toan:
         add dl,48             ; Chuyen thanh ky tu ASCII
         mov ah,2              ; Thiet lap DOS de hien thi mot ki tu
         int 21h               ; In ra
-        loop InRa             ; Lap lai cho den het
+        loop InRa             ; Lap lai cho den het tu dong DEC CX
         
     lea dx,a66                ; Dua dia chi chuoi a66 vao thanh ghi DX
     mov ah,9                  ; Thiet lap ham DOS de hien thi mot chuoi
